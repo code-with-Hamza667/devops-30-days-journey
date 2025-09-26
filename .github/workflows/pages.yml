@@ -1,0 +1,30 @@
+name: Deploy Day-01 Portfolio
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Day-01 portfolio site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Day-01-GitHub-Portfolio-CICD/portfolio-site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
